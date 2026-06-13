@@ -1,5 +1,10 @@
-extends CharacterBody2D # Make sure this says CharacterBody2D at the very top!
+extends CharacterBody2D 
 
+signal laser
+signal grenade
+
+var can_laser : bool = true
+var can_grenade : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +24,21 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 	
 	# 3. Your weapon inputs stay right below the movement code
-	if Input.is_action_pressed("Primary Action"):
-		print('shoot laser')
-	if Input.is_action_pressed("secondary action"):
-		print('shoot grenade')
+	if Input.is_action_pressed("Primary Action") and can_laser:
+		can_laser = false
+		$Timer.start()
+		laser.emit()
+	if Input.is_action_pressed("secondary action") and can_grenade:
+		can_grenade = false
+		$"GrenadeReload Timer".start()
+		grenade.emit()
+
+
+func _on_timer_timeout() -> void:
+	#pass # Replace with function body.
+	can_laser = true;
+
+
+
+func _on_grenade_reload_timer_timeout() -> void:
+	can_grenade = true
