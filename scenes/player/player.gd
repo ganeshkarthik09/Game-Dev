@@ -1,7 +1,7 @@
 extends CharacterBody2D 
 
-signal laser
-signal grenade
+signal laser(pos,direction)
+signal grenade(pos,direction)
 
 var can_laser : bool = true
 var can_grenade : bool = true
@@ -23,15 +23,27 @@ func _process(_delta: float) -> void:
 	# Move the player using Godot's internal physics engine calculations
 	move_and_slide()
 	
+	#Rotate Player
+	look_at(get_global_mouse_position())
+	
+	var player_direction =(get_global_mouse_position()-position).normalized()
+	
 	# 3. Your weapon inputs stay right below the movement code
 	if Input.is_action_pressed("Primary Action") and can_laser:
+		#randomly selected a marked2d to make laser start
+		var laser_markers = $LaserStartPositions.get_children()
+		var selected_laser = laser_markers[randi() % laser_markers.size()]
+		
+		#print(selected_laser)
 		can_laser = false
 		$Timer.start()
-		laser.emit()
+		#emit the position we selected
+		laser.emit(selected_laser.global_position,player_direction)
 	if Input.is_action_pressed("secondary action") and can_grenade:
 		can_grenade = false
 		$"GrenadeReload Timer".start()
-		grenade.emit()
+		var pos = $LaserStartPositions.get_children()[0].global_position
+		grenade.emit(pos,player_direction)
 
 
 func _on_timer_timeout() -> void:

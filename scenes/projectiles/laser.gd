@@ -1,6 +1,7 @@
-extends StaticBody2D
+extends Area2D
 
-signal player_entered_gate(body)
+@export var speed : int = 1000
+var direction : Vector2 = Vector2.UP
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,9 +10,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	#print("Body has entered") # Replace with function body.
-	player_entered_gate.emit(body)
+func _process(delta: float) -> void:
+	position += direction * speed *delta
+	
+	
