@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://7k048776ywi8"]
+
+[ext_resource type="Script" uid="uid://cyl8os4e0cxua" path="res://scenes/levels/level.gd" id="1_bovvr"]
+[ext_resource type="PackedScene" uid="uid://bytfk3k0l4qmt" path="res://scenes/player/player.tscn" id="2_b2cq8"]
+[ext_resource type="Texture2D" uid="uid://cirjxo05yas1p" path="res://graphics/ground/stones.png" id="2_urvlt"]
+[ext_resource type="PackedScene" uid="uid://r86gyur27sym" path="res://scenes/objects/gate.tscn" id="2_xb4v1"]
+
+[sub_resource type="TileSet" id="TileSet_xb4v1"]
+tile_size = Vector2i(390, 390)
+
+[node name="Level" type="Node2D" unique_id=2122776927]
+script = ExtResource("1_bovvr")
+
+[node name="Ground" type="Node2D" parent="." unique_id=829559597]
+
+[node name="Soil" type="Sprite2D" parent="Ground" unique_id=985794898]
+position = Vector2(465, 580)
+texture = ExtResource("2_urvlt")
+region_enabled = true
+
+[node name="TileMap" type="TileMap" parent="Ground" unique_id=1140448918]
+tile_set = SubResource("TileSet_xb4v1")
+format = 2
+
+[node name="Gate" parent="." unique_id=1090661185 instance=ExtResource("2_xb4v1")]
+
+[node name="Player" parent="." unique_id=283538832 instance=ExtResource("2_b2cq8")]
+position = Vector2(464, 399)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1052597095]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
+
+[node name="Projectiles" type="Node2D" parent="." unique_id=166416913]
+
+[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
