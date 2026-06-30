@@ -1,27 +1,30 @@
-[gd_scene format=3 uid="uid://cifcefgjutd0j"]
+[gd_scene load_steps=5 format=3 uid="uid://hpay8x0wqlbe"]
 
-[ext_resource type="Texture2D" uid="uid://4vc1svtkmwed" path="res://graphics/objects/bed.png" id="1_g5a0r"]
-[ext_resource type="Texture2D" uid="uid://boq2fcowtdc81" path="res://graphics/objects/pillow_large.png" id="2_ahlc3"]
-[ext_resource type="Texture2D" uid="uid://culek2qt2gce0" path="res://graphics/objects/pillow_small.png" id="3_41ex3"]
+[ext_resource type="Texture2D" uid="uid://b812sdjd5bqki" path="res://graphics/objects/bed.png" id="1_rutwg"]
+[ext_resource type="Texture2D" uid="uid://bp4fukur2gogn" path="res://graphics/objects/pillow_large.png" id="2_viqvc"]
+[ext_resource type="Texture2D" uid="uid://bu8y0g26e67ms" path="res://graphics/objects/pillow_small.png" id="3_t7qn7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5a0r"]
-size = Vector2(632, 367)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmlq4"]
+size = Vector2(634, 368)
 
-[node name="Bed" type="StaticBody2D" unique_id=865326686]
+[node name="Bed" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
 
-[node name="Bed" type="Sprite2D" parent="." unique_id=1872757901]
-texture = ExtResource("1_g5a0r")
+[node name="Bed" type="Sprite2D" parent="."]
+texture = ExtResource("1_rutwg")
 
-[node name="Pillow" type="Sprite2D" parent="." unique_id=1558979950]
-position = Vector2(212, 2)
-scale = Vector2(0.9498441, 1.080578)
-skew = -0.012217402
-texture = ExtResource("2_ahlc3")
+[node name="Pillow" type="Sprite2D" parent="."]
+position = Vector2(217, -3)
+rotation = 0.0802851
+scale = Vector2(0.903, 0.903)
+skew = -0.0593412
+texture = ExtResource("2_viqvc")
 
-[node name="PillowSmall" type="Sprite2D" parent="." unique_id=1974669615]
-position = Vector2(-259, -7)
-texture = ExtResource("3_41ex3")
+[node name="PillowSmall" type="Sprite2D" parent="."]
+position = Vector2(136, -3)
+texture = ExtResource("3_t7qn7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=962606509]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_g5a0r")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_pmlq4")

@@ -1,26 +1,27 @@
-[gd_scene format=3 uid="uid://r86gyur27sym"]
+[gd_scene load_steps=4 format=3 uid="uid://b2hww2tg0fckd"]
 
-[ext_resource type="Script" uid="uid://vo3ssauyha4k" path="res://scenes/objects/gate.gd" id="1_33swo"]
-[ext_resource type="Texture2D" uid="uid://dyol46feeqfik" path="res://graphics/objects/gate.png" id="1_q0w5n"]
+[ext_resource type="Script" path="res://scenes/objects/gate.gd" id="1_s2abh"]
+[ext_resource type="Texture2D" uid="uid://dnugku75xnwnl" path="res://graphics/objects/gate.png" id="1_vhhf0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_33swo"]
-size = Vector2(681, 121)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksjtj"]
+size = Vector2(829, 238)
 
-[node name="Gate" type="StaticBody2D" unique_id=1090661185]
-script = ExtResource("1_33swo")
+[node name="Gate" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_s2abh")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1959986929]
-position = Vector2(573.25, -501)
-scale = Vector2(0.81394225, 1)
-texture = ExtResource("1_q0w5n")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vhhf0")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=143161326]
-polygon = PackedVector2Array(-592, -1280, -597, -9, -596, 28, -595, 44, -593, 62, -591, 81, -580, 120, -566, 154, -541, 195, -492, 245, -449, 266, -400, 282, -23, 276, 272, 273, 283, 133, 318, 98, 949, 104, 973, 189, 975, 275, 1690, 272, 1739, 237, 1759, 222, 1781, 200, 1814, 158, 1841, 55, 1841, 1, 1836, -123, 1840, -1279)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1439, -781, -1436, 524, -1415, 635, -1310, 737, -1176, 782, -364, 773, -364, 557, 495, 557, 486, 785, 1357, 782, 1476, 722, 1545, 608, 1572, 506, 1563, -781)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1842216147]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1173020309]
-position = Vector2(620.5, 205.5)
-shape = SubResource("RectangleShape2D_33swo")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(60.5, 700)
+shape = SubResource("RectangleShape2D_ksjtj")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
